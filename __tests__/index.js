@@ -4,27 +4,27 @@ const{all, markAsComplete,add,overdue,dueToday,dueLater}=todoList();
 const formattedDate = d => {
     return d.toISOString().split("T")[0]
   }
-  let dateToday = new Date()
-  const today = formattedDate(dateToday)
-  const yesterday = formattedDate(
-    new Date(new Date().setDate(dateToday.getDate() - 1))
-  )
-  const tomorrow = formattedDate(
-    new Date(new Date().setDate(dateToday.getDate() + 1))
-  )
-  
+let dateToday = new Date()
+const today = formattedDate(dateToday)
+const yesterday = formattedDate(
+new Date(new Date().setDate(dateToday.getDate() - 1))
+)
+const tomorrow = formattedDate(
+new Date(new Date().setDate(dateToday.getDate() + 1))
+)
+
 describe("To do list test suite",()=>{
     beforeAll(()=>{
         add({
             title:"Test todo0",
             completed: false,
             dueDate:new Date().toLocaleDateString("en-CA")
-        }); 
+        });
     })
     test("Should add one to-do",()=>{
         const todoCount=all.length;
         add({
-            title:"Test todo1",
+            title:"Test todo",
             completed:false,
             dueDate:today,
         });
@@ -34,7 +34,7 @@ describe("To do list test suite",()=>{
         expect(all[0].completed).toBe(false);
         markAsComplete(0);
         expect(all[0].completed).toBe(true);
-  
+
     })
     test("Should retrieve overdue items",()=>{
         let overduee=overdue();
